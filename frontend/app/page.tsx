@@ -1,14 +1,5 @@
-const agents = ["ATLAS","NOVA","ARIA","STOCK","MERCURY","LEDGER","INSIGHT","PULSE","ORBIT","SENTINEL"];
-
-export default function Home() {
-  return (
-    <main style={{maxWidth:1180,margin:"0 auto",padding:"72px 24px"}}>
-      <p style={{letterSpacing:2,opacity:.6}}>AI BUSINESS WORKFORCE</p>
-      <h1 style={{fontSize:"clamp(42px,7vw,78px)",lineHeight:1.02,maxWidth:850}}>Your business, powered by an AI workforce.</h1>
-      <p style={{fontSize:20,lineHeight:1.6,opacity:.75,maxWidth:720}}>One platform for sales, customers, inventory, procurement, finance and reporting.</p>
-      <section style={{marginTop:60,display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(210px,1fr))",gap:16}}>
-        {agents.map(name => <article key={name} style={{padding:22,border:"1px solid rgba(255,255,255,.12)",borderRadius:18,background:"rgba(255,255,255,.04)"}}><strong>{name}</strong><p style={{opacity:.65}}>Agent foundation ready.</p></article>)}
-      </section>
-    </main>
-  );
-}
+"use client";
+import {useState} from "react";
+const agents=[['ATLAS','Manager','Coordinates workflows'],['NOVA','Sales','Turns inquiries into orders'],['ARIA','Support','Handles customer service'],['STOCK','Inventory','Tracks stock and demand'],['MERCURY','Procurement','Manages suppliers'],['LEDGER','Finance','Tracks revenue and profit'],['INSIGHT','Reports','Creates business reports'],['PULSE','Communications','Connects customer channels'],['ORBIT','CRM','Customer intelligence'],['SENTINEL','Security','Monitors risk']];
+export default function Home(){const [tab,setTab]=useState('Dashboard');return <main className="shell"><aside><h2>AI Workforce</h2>{['Dashboard','Orders','Inventory','Customers','Suppliers','Finance','Reports','AI Workforce','Approvals','Settings'].map(x=><button className={tab===x?'nav active':'nav'} onClick={()=>setTab(x)} key={x}>{x}</button>)}</aside><section className="content"><header><div><span className="eyebrow">BUSINESS COMMAND CENTER</span><h1>{tab}</h1></div><div className="status"><i/> Systems operational</div></header><div className="cards"><Card title="Revenue" value="$0"/><Card title="Orders" value="0"/><Card title="Profit" value="$0"/><Card title="AI Actions" value="0"/></div>{tab==='Dashboard'?<><div className="panel"><h2>AI Workforce</h2><div className="agents">{agents.map(a=><div className="agent" key={a[0]}><div className="dot"/><div><b>{a[0]}</b><small>{a[1]} · {a[2]}</small></div><span>Ready</span></div>)}</div></div><div className="panel"><h2>Activity</h2><p className="muted">No business activity yet. Connect your business data to let the AI workforce start operating.</p></div></>:<div className="panel"><h2>{tab}</h2><p className="muted">This module is part of Foundation V1. The UI shell is ready for its backend workflow.</p></div>}</section></main>}
+function Card({title,value}:{title:string,value:string}){return <div className="card"><span>{title}</span><strong>{value}</strong><small>Awaiting business data</small></div>}
