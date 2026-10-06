@@ -1,0 +1,30 @@
+version: "3.9"
+
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: aiworkforce
+      POSTGRES_PASSWORD: aiworkforce
+      POSTGRES_DB: ai_business_workforce
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  api:
+    build: ./backend
+    environment:
+      DATABASE_URL: postgresql+psycopg2://aiworkforce:aiworkforce@db:5432/ai_business_workforce
+      SECRET_KEY: ${SECRET_KEY}
+      JWT_SECRET_KEY: ${JWT_SECRET_KEY}
+      APP_ENV: production
+      EMAIL_PROVIDER: ${EMAIL_PROVIDER:-console}
+      EXCHANGE_RATE_PROVIDER: ${EXCHANGE_RATE_PROVIDER:-mock}
+    depends_on:
+      - db
+    ports:
+      - "8000:8000"
+
+volumes:
+  pgdata:
