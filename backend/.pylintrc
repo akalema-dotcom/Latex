@@ -1,0 +1,70 @@
+# ============================================================
+# Pylint configuration for the AI Business Workforce backend
+# ============================================================
+# Tuned for a FastAPI + SQLAlchemy 2.0 + Pydantic v2 codebase.
+
+[MAIN]
+analyse-fallback-blocks=no
+ignore-paths=^tests/.*$,
+ignore=
+    migrations,
+    alembic/versions,
+jobs=1
+
+[MESSAGES CONTROL]
+disable=
+    missing-module-docstring,
+    missing-class-docstring,
+    missing-function-docstring,
+    line-too-long,
+    too-many-arguments,
+    too-many-locals,
+    too-many-branches,
+    too-many-statements,
+    too-many-instance-attributes,
+    too-few-public-methods,
+    too-many-public-methods,
+    too-many-return-statements,
+    too-many-positional-arguments,
+    unsubscriptable-object,
+    not-callable,
+    c-extension-no-member,
+    redefined-outer-name,
+    unused-argument,
+    unused-import,
+    import-outside-toplevel,
+    duplicate-code,
+    inconsistent-return-statements,
+    wrong-import-position,
+    wrong-import-order,
+    ungrouped-imports,
+    invalid-name,
+    broad-exception-caught,
+    broad-except,
+    consider-using-f-string,
+    consider-using-from-import,
+    no-else-return,
+    no-else-raise,
+    protected-access,
+    arguments-differ,
+    abstract-method,
+    too-many-ancestors,
+    useless-parent-delegation,
+    unnecessary-pass,
+    expression-not-assigned,
+    superfluous-parens,
+    useless-return,
+    raise-missing-from,
+    unused-variable,
+
+[REPORTS]
+reports=no
+score=no
+
+[DESIGN]
+max-attributes=20
+max-public-methods=25
+
+[BASIC]
+variable-rgx=[a-z_][a-z0-9_]*$
+argument-rgx=[a-z_][a-z0-9_]*$
